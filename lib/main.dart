@@ -1,8 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:auto_updater/auto_updater.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -31,8 +29,9 @@ bool darkMode = ThemeConstants.defaultDarkModelSwitch;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   if (Platform.isWindows) {
-    await checkUpdate();
+    // await checkUpdate();
     await initWindowManager();
+    await windowManager.setTitle('Syber Waifu');
   }
 
   await initDatabase();
@@ -148,12 +147,12 @@ initLocale() async {
   }
 }
 
-checkUpdate() async {
-  if (kDebugMode) {
-    return;
-  }
-  String feedURL = 'https://appcast.wardonet.cn/syberwaifu/appcast.xml';
-  await autoUpdater.setFeedURL(feedURL);
-  await autoUpdater.checkForUpdates(inBackground: true);
-  await autoUpdater.setScheduledCheckInterval(3600);
-}
+// checkUpdate() async {
+//   if (kDebugMode) {
+//     return;
+//   }
+//   String feedURL = '';
+//   await autoUpdater.setFeedURL(feedURL);
+//   await autoUpdater.checkForUpdates(inBackground: true);
+//   await autoUpdater.setScheduledCheckInterval(3600);
+// }
