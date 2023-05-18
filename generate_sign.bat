@@ -1,0 +1,1 @@
+flutter pub run auto_updater:sign_update %1

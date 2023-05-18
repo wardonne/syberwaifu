@@ -1,0 +1,10 @@
+app_id: 9238027b-f617-4284-bd9f-92e808ee9320
+script_template: inno_setup.iss
+publisher: Wardon
+publisher_url: https://github.com/WardonNE
+display_name: Syber Waifu
+create_desktop_icon: true
+install_dir_name: Syber Waifu
+locales:
+  - en
+  - zh

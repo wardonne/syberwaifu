@@ -1,0 +1,158 @@
+{
+    "syberwaifu": "Syber Waifu",
+    
+    "validateRequired": "{attribute}不能为空",
+    "@validateRequired": {"placeholders": {"attribute": {}}},
+
+    "hintSearchChat": "搜索会话",
+
+    "dialogTitleConfirm": "确认?",
+    "messageCopied": "复制成功",
+    "confirmDeleteMessage": "确认删除该信息?",
+    "dialogTitleDeletePreset": "删除预设",
+    "confirmDeletePreset": "确认删除该预设?",
+    "messageDeleteSuccess": "删除成功",
+    "confirmDeleteChat": "确认删除该会话?",
+    "selectedMessageCount": "已选消息",
+    "dialogTitleSendFailure": "发送失败",
+    "confirmResendMessage": "是否重新发送?",
+    "dialogTitleError": "错误",
+    "dialogTitleQuote": "引用消息",
+    "dialogTitleCropImage": "图片裁剪",
+    "dialogTitleViewImage": "查看图片",
+
+    "dashboardDataStat": "数据统计",
+    "dashboardChatCount": "会话数",
+    "dashboardPresetCount": "预设数",
+    "dashboardOpenAITokenCount": "OpenAI秘钥数",
+    "dashboardChatCountTooltip": "点击进入会话管理",
+    "dashboardPresetCountTooltip": "点击进入预设管理",
+    "dashboardOpenAITokenCountTooltip": "点击进入OpenAI秘钥管理",
+    "dashboardResourceBoard": "资源看板",
+    "dashboardAvatarLibrary": "头像库",
+    "dashboardAvatarCountTooltip": "点击进入头像库",
+
+    "btnBack2Chat": "回到聊天页",
+    "btnDashboard": "进入控制台",
+    "btnView": "查看",
+    "btnEdit": "编辑",
+    "btnDelete": "删除",
+    "btnConfirm": "确认",
+    "btnCancel": "取消",
+    "btnAdd": "添加",
+    "btnRemove": "移除",
+    "btnChat": "对话",
+    "btnCopy": "复制",
+    "btnQuote": "引用",
+    "btnQuoteWithContext": "引用上下文",
+    "btnQuit": "退出",
+    "btnSend": "发送",
+    "btnClose": "关闭",
+    "btnSettings": "设置",
+    "btnMaximize": "最大化",
+    "btnMinimize": "最小化",
+    "btnRestore": "还原",
+    "btnRefresh": "刷新",
+    "btnClickToShowQuote": "点击查看引用",
+    "btnLoadFromSystem": "导入系统设置",
+    "btnMultipleChoice": "多选",
+    "btnCreateNewChat": "新建会话",
+    "btnBack": "返回",
+    "btnSelectAvatar": "选择头像",
+    "btnPickFile": "选择文件",
+    "btnPickAvatarLibrary": "浏览头像库",
+
+    "pageTitleInit": "初始化设置",
+    "pageTitlePresetManager": "预设管理",
+    "pageTitlePresetCreate": "创建预设",
+    "pageTitlePresetEdit": "编辑预设: {name}",
+    "@pageTitlePresetEdit": {
+        "placeholders": {"name": {}}
+    },
+    "pageTitlePresetDetail": "查看预设: {name}",
+    "@pageTitlePresetDetail": {
+        "placeholders": {"name": {}}
+    },
+    "pageTitleChatManager": "会话管理",
+    "pageTitleChatCreate": "创建会话",
+    "pageTitleChatEdit": "编辑会话: {name}",
+    "@pageTitleChatEdit": {"placeholders": {"name": {}}},
+    "pageTitleChatDetail": "查看会话: {name}",
+    "@pageTitleChatDetail": {"placeholders": {"name": {}}},
+
+    "pageTitleOpenAITokenManager": "OpenAI秘钥管理",
+    "pageTitleOpenAITokenCreate": "创建OpenAI秘钥",
+    "pageTitleOpenAITokenEdit": "编辑OpenAI秘钥",
+    "pageTitleOpenAITokenDetail": "查看OpenAI秘钥",
+
+    "pageTitleChatMessageManager": "消息记录",
+
+    "pageTitleAvatarManager": "头像管理",
+
+    "columnNameCreatedAt": "创建时间",
+    "columnNameUpdatedAt": "最后更新时间",
+
+    "columnNamePresetUUID": "ID",
+    "columnNamePresetName": "预设名称",
+    "columnNamePresetNickname": "AI昵称",
+    "columnNamePresetChatCount": "会话数",
+    "columnNamePresetIsDefault": "默认预设",
+    "columnValueFormatPresetIsDefault": "{section, plural, =1 {是} other {否}}",
+    "@columnValueFormatPresetIsDefault": {
+        "placeholders": {"section": {"type": "int"}}
+    },
+    "columnNameActions": "操作",
+
+    "columnNameChatUUID": "ID",
+    "columnNameChatName": "会话名称",
+    "columnNameChatPreset": "会话预设",
+    "columnNameOpenAIToken": "OpenAI秘钥",
+    "columnNameChatLastChatedAt": "最后会话时间",
+    "columnNameChatMessageCount": "消息数",
+    "columnNameChatAvatar": "头像",
+
+    "columnNameOpenAITokenUUID": "ID",
+    "columnNameOpenAITokenName": "秘钥名称",
+    "columnNameOpenAITokenContent": "秘钥内容",
+    "columnNameOpenAITokenChatCount": "会话数",
+    "columnNameOpenAITokenStatus": "启用状态",
+    "columnValueFormatOpenAITokenStatus": "{section, plural, =1 {是} other {否}}",
+    "@columnValueFormatOpenAITokenStatus": {
+        "placeholders": {"section": {"type": "int"}}
+    },
+
+    "columnNamePresetMessageRole": "角色",
+    "columnNamePresetMessageContent": "消息内容",
+
+    "columnNameChatMessageUUID": "ID",
+    "columnNameChatMessageRole": "发送角色",
+    "columnNameChatMessageContent": "消息内容",
+    "columnNameChatMessageCreatedAt": "发送时间",
+    "columnNameChatMessageQuoteCount": "启用消息数",
+
+    "cardTitleBasicInfo": "基础信息",
+    "cardTitlePresetMessages": "预设消息",
+    "cardTitleAddPresetMessage": "添加预设消息",
+    "cardTitleThemeConfig": "主题设置",
+    "cardTitleProxyConfig": "代理设置",
+
+    "columnNameProxyStatus": "启用状态",
+    "columnNameProxyHost": "代理主机",
+    "columnNameProxyPort": "代理端口",
+
+    "columnNameAvatarUUID": "ID",
+    "columnNameAvatarImage": "头像",
+    "columnNameAvatarChatCount": "会话数",
+
+    "messageRoleSystem": "系统",
+    "messageRoleUser": "用户",
+    "messageRoleAssistant": "AI",
+
+    "tableTitlePresetList": "预设列表",
+    "tableTitleChatList": "会话列表",
+    "tableTitleOpenAITokenList": "OpenAI秘钥列表",
+    "tableTitleAvatarList": "头像列表",
+
+    "proxyEnableLabel": "启用",
+    "proxyDisableLabel": "禁用"
+}
