@@ -16,6 +16,7 @@
     "selectedMessageCount": "已选消息",
     "dialogTitleSendFailure": "发送失败",
     "confirmResendMessage": "是否重新发送?",
+    "confirmDeleteAvatar": "确认删除该头像?",
     "dialogTitleError": "错误",
     "dialogTitleQuote": "引用消息",
     "dialogTitleCropImage": "图片裁剪",

@@ -5,6 +5,7 @@ publisher_url: https://github.com/WardonNE
 display_name: Syber Waifu
 create_desktop_icon: true
 install_dir_name: Syber Waifu
+setup_icon_file: C:\workspace\wardonet\syberwaifu\windows\packaging\exe\setup_icon.ico
 locales:
   - en
   - zh

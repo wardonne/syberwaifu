@@ -123,6 +123,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "columnNameUpdatedAt": MessageLookupByLibrary.simpleMessage("最后更新时间"),
         "columnValueFormatOpenAITokenStatus": m0,
         "columnValueFormatPresetIsDefault": m1,
+        "confirmDeleteAvatar": MessageLookupByLibrary.simpleMessage("确认删除该头像?"),
         "confirmDeleteChat": MessageLookupByLibrary.simpleMessage("确认删除该会话?"),
         "confirmDeleteMessage":
             MessageLookupByLibrary.simpleMessage("确认删除该信息?"),

@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
@@ -9,11 +7,13 @@ import 'package:syberwaifu/components/table/number_cell.dart';
 import 'package:syberwaifu/components/table/text_cell.dart';
 import 'package:syberwaifu/constants/application.dart';
 import 'package:syberwaifu/enums/database_sort_type.dart';
+import 'package:syberwaifu/functions/file.dart';
 import 'package:syberwaifu/functions/navigator.dart';
 import 'package:syberwaifu/models/avatar.dart';
 import 'package:syberwaifu/router/router.dart';
 import 'package:syberwaifu/services/avatar_service.dart';
 import 'package:syberwaifu/types/chat_list_conditions.dart';
+import 'package:syberwaifu/views/admin/avatar/components/delete_button.dart';
 import 'package:syberwaifu/views/admin/avatar/components/view_button.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import 'package:uuid/uuid.dart';
@@ -154,10 +154,13 @@ class AvatarIndexVM extends DataGridSource {
         case 'CREATED_AT':
           return DateCell(dateTime: cell.value as DateTime);
         case 'ACTIONS':
+          final avatar = cell.value as AvatarModel;
+          final chatCount = _avatarChatCounts[avatar] ?? 0;
           return Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ViewButton(avatar: cell.value as AvatarModel),
+              if (chatCount == 0) DeleteButton(avatar: avatar),
             ],
           );
         default:
@@ -181,8 +184,8 @@ class AvatarIndexVM extends DataGridSource {
     await fetchAvatarList();
   }
 
-  void refresh() {
-    notifyListeners();
+  void refresh() async {
+    await fetchAvatarList();
   }
 
   Future<void> reload() async {
@@ -192,15 +195,19 @@ class AvatarIndexVM extends DataGridSource {
   }
 
   Future<void> create(String tempUri) async {
-    final tempAvatar = File(tempUri);
     final ext = extension(tempUri);
     final documentPath = await getApplicationDocumentsDirectory();
-    final avatar = await tempAvatar.rename(joinAll([
+    final avatarPath = joinAll([
       documentPath.path,
       ApplicationConstants.avatarDirpath,
       '${const Uuid().v4()}$ext',
-    ]));
+    ]);
+    final avatar = await rename(tempUri, avatarPath);
     final model = AvatarModel(uri: 'file://${avatar.path}');
     await _avatarService.create(model);
+  }
+
+  Future<void> delete(AvatarModel avatar) async {
+    return await _avatarService.delete(avatar);
   }
 }

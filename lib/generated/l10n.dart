@@ -180,6 +180,16 @@ class S {
     );
   }
 
+  /// `确认删除该头像?`
+  String get confirmDeleteAvatar {
+    return Intl.message(
+      '确认删除该头像?',
+      name: 'confirmDeleteAvatar',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `错误`
   String get dialogTitleError {
     return Intl.message(
