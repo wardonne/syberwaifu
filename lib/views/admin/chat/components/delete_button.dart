@@ -35,6 +35,7 @@ class DeleteButton extends StatelessWidget {
                 if (context.mounted) {
                   final vm = Provider.of<ChatIndexVM>(context, listen: false);
                   await vm.deleteChat(chat.uuid!);
+                  vm.refresh();
                   if (context.mounted) {
                     showMessage(context, S.of(context).messageDeleteSuccess);
                     Navigator.of(context).pop();

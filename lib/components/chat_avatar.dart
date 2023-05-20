@@ -32,7 +32,6 @@ class ChatAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final avatarUri = getUri(avatar);
-
     if (isAssets(avatar)) {
       return ClipRRect(
         borderRadius: BorderRadius.circular(radius ?? 0),
@@ -62,6 +61,7 @@ class ChatAvatar extends StatelessWidget {
           width: size,
           height: size,
           loadStateChanged: _loadStateChanged,
+          enableMemoryCache: false,
         ),
       );
     } else if (isNetwork(avatar)) {

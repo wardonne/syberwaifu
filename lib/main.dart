@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -67,7 +68,7 @@ void main() async {
     (exception, stackTrace) {
       debugPrint('$exception');
       debugPrintStack(stackTrace: stackTrace);
-      if (navigatorKey.currentContext != null) {
+      if (navigatorKey.currentContext != null && kDebugMode) {
         SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
           showDialog(
             context: navigatorKey.currentContext!,

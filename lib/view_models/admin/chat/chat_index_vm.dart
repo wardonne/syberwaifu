@@ -212,4 +212,8 @@ class ChatIndexVM extends DataGridSource {
   reload() async {
     await setPage(1);
   }
+
+  refresh() async {
+    await fetchChatList();
+  }
 }

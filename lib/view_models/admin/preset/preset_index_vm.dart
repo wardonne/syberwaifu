@@ -188,4 +188,8 @@ class PresetIndexVM extends DataGridSource {
   reload() async {
     await setPage(1);
   }
+
+  refresh() async {
+    await fetchPresetList();
+  }
 }

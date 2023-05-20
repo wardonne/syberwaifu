@@ -30,11 +30,9 @@ class ChatDetailVM extends ChangeNotifier {
           name: '',
         ),
         _editable = true,
-        _avatar = null,
-        isCreate = true;
+        _avatar = null;
 
   ChatDetailVM.detail(this._chat, this._editable) {
-    isCreate = false;
     _loading = true;
     _chat.avatar.then((value) {
       _avatar = value;
@@ -46,8 +44,6 @@ class ChatDetailVM extends ChangeNotifier {
   bool _loading = false;
 
   bool get loading => _loading;
-
-  late final bool isCreate;
 
   late final AvatarModel? _avatar;
 
@@ -114,7 +110,6 @@ class ChatDetailVM extends ChangeNotifier {
     await Model.transaction((txn) async {
       if (!empty(_tempAvatar)) {
         if (_tempAvatar!.isNew) {
-          debugPrint('createAvatar');
           final tempAvatar = File(getUri(_tempAvatar!.uri!));
           final ext = extension(_tempAvatar!.uri!);
           final documentDirpath = await getApplicationDocumentsDirectory();
@@ -132,7 +127,7 @@ class ChatDetailVM extends ChangeNotifier {
       }
       _chatService.beginTransaction(txn);
       if (_chat.isNew) {
-        _chatService.create(_chat);
+        await _chatService.create(_chat);
 
         _chatMessageService.beginTransaction(txn);
         for (var message in presetMessages.reversed) {
@@ -147,7 +142,7 @@ class ChatDetailVM extends ChangeNotifier {
         }
         _chatMessageService.endTransaction();
       } else {
-        _chatService.update(_chat);
+        await _chatService.update(_chat);
       }
       _chatService.endTransaction();
     });

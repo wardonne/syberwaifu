@@ -12,7 +12,7 @@ class UpdatedTimeInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<ChatDetailVM>(
       builder: (context, vm, child) {
-        final labelText = S.of(context).columnNameCreatedAt;
+        final labelText = S.of(context).columnNameUpdatedAt;
         return BaseInput(
           labelText: labelText,
           value: DateFormat('yyyy-MM-dd HH:mm:ss').format(vm.updatedAt!),

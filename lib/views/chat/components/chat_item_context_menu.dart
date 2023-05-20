@@ -34,24 +34,28 @@ class ChatItemContextMenu extends StatelessWidget {
           label: Text(S.of(context).btnEdit),
           onPressed: () async {
             await replace(context, RouterSettings.chatUpdate, arguments: chat);
-            if (context.mounted) {
-              chatListVM.reload();
-            }
+            chatListVM.reload();
           },
         ),
         if (chatListVM.chats.length > 1)
           ContextMenuButton(
             icon: const Icon(Icons.delete_forever),
             label: Text(S.of(context).btnDelete),
-            onPressed: () {
-              openConfirmDialog(
+            onPressed: () async {
+              await openConfirmDialog(
                 context,
                 message: S.of(context).confirmDeleteMessage,
                 onConfirmed: () async {
                   await chatListVM.deleteChat(chat);
                   chatListVM.reload();
+                  if (context.mounted) {
+                    back(context);
+                  }
                 },
               );
+              if (context.mounted) {
+                back(context);
+              }
             },
           ),
       ],

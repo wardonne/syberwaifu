@@ -121,6 +121,7 @@ class ChatModel extends Model {
   bool _beforeInsert<T extends Model>(T model) {
     (model as ChatModel).createdAt = DateTime.now();
     model.updatedAt = DateTime.now();
+    model.lastChatedAt = DateTime.now();
     return true;
   }
 

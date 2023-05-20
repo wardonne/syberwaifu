@@ -16,10 +16,10 @@ class MessageInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = TextEditingController();
+    // final controller = TextEditingController();
     return Consumer<PresetDetailVM>(
       builder: (context, detail, child) {
-        controller.text = message.content!;
+        // controller.text = message.content!;
         bool roleSelectable = true;
         if (detail.messages
                 .indexWhere((element) => element.uuid == message.uuid) ==
@@ -49,7 +49,8 @@ class MessageInput extends StatelessWidget {
               ),
               Expanded(
                 child: BaseInput(
-                  controller: controller,
+                  // controller: controller,
+                  value: message.content,
                   maxLines: null,
                   suffix: detail.editable
                       ? TextButton.icon(
@@ -72,6 +73,9 @@ class MessageInput extends StatelessWidget {
                   onSaved: (value) {
                     message.content = value ?? '';
                     detail.updateMessage(message);
+                  },
+                  onChanged: (value) {
+                    message.content = value;
                   },
                 ),
               ),

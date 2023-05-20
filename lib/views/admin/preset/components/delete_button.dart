@@ -34,6 +34,7 @@ class DeleteButton extends StatelessWidget {
                 if (context.mounted) {
                   final vm = Provider.of<PresetIndexVM>(context, listen: false);
                   await vm.deletePreset(preset);
+                  vm.refresh();
                   if (context.mounted) {
                     showMessage(context, S.of(context).messageDeleteSuccess);
                     Navigator.of(context).pop();

@@ -60,6 +60,7 @@ class ChatListVM extends ChangeNotifier {
       sortedColumn: 'LAST_CHATED_AT',
       sortedType: DatabaseSortType.desc,
     );
+    _chats.clear();
     for (final item in data.items) {
       _chats.add(item);
       _chatAvaliable[item] = await item.avaliable;
@@ -70,6 +71,9 @@ class ChatListVM extends ChangeNotifier {
 
   Future<void> reload() async {
     await fetchChatList();
+    if (_chats.where((chat) => chat.uuid == activeChat.uuid).isEmpty) {
+      activeChat = _chats.first;
+    }
   }
 
   void refreshItemAndSort(ChatModel chat) {

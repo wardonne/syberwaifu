@@ -14,9 +14,10 @@ class NameInput extends StatelessWidget {
     final labelText = S.of(context).columnNameChatName;
     return Consumer<ChatDetailVM>(
       builder: (context, vm, child) {
-        controller.value = TextEditingValue(text: vm.name);
+        // controller.value = TextEditingValue(text: vm.name);
         return BaseInput(
-          controller: controller,
+          // controller: controller,
+          value: vm.name,
           labelText: labelText,
           readOnly: !vm.editable,
           validator: (value) => requiredValidator(value, labelText),

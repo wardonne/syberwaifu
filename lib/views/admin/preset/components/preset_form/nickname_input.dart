@@ -17,15 +17,18 @@ class NicknameInput extends StatefulWidget {
 class NicknameInputState extends State<NicknameInput> {
   @override
   Widget build(BuildContext context) {
-    final controller = TextEditingController();
+    // final controller = TextEditingController();
     final labelText = S.of(context).columnNamePresetNickname;
     return Consumer<PresetDetailVM>(
       builder: (context, detail, child) {
-        controller.text = detail.nickname;
+        // controller.text = detail.nickname;
         return BaseInput(
-          controller: controller,
+          // controller: controller,
+          value: detail.nickname,
           readOnly: !detail.editable || detail.saving,
           validator: (value) => requiredValidator(value, labelText),
+          onSaved: (value) => detail.nickname = value ?? '',
+          onChanged: (value) => detail.nickname = value,
         );
       },
     );

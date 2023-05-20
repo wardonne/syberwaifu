@@ -5,7 +5,6 @@ import 'package:syberwaifu/components/buttons/custom_elevated_button.dart';
 import 'package:syberwaifu/components/chat_avatar.dart';
 import 'package:syberwaifu/components/custom_divider.dart';
 import 'package:syberwaifu/components/loading.dart';
-import 'package:syberwaifu/constants/assets.dart';
 import 'package:syberwaifu/enums/divider_direction.dart';
 import 'package:syberwaifu/functions/empty.dart';
 import 'package:syberwaifu/functions/open_dialog.dart';
@@ -31,11 +30,7 @@ class _AvatarPickerState extends State<AvatarPicker> {
                 width: 100, height: 100, child: Center(child: Loading())),
           );
         }
-        final avatar = vm.isCreate
-            ? const ChatAvatar.middle(
-                avatar: AssetsConstants.defaultAIAvatar,
-              )
-            : ChatAvatar.middle(avatar: vm.avatar);
+        final avatar = ChatAvatar.middle(avatar: vm.avatar);
         const divider = CustomDivider(
           size: 10,
           direction: DividerDirection.vertical,
@@ -46,7 +41,7 @@ class _AvatarPickerState extends State<AvatarPicker> {
             MouseRegion(
               cursor: SystemMouseCursors.click,
               child: Tooltip(
-                message: S.of(context).btnSelectAvatar,
+                message: S.of(context).btnView,
                 child: GestureDetector(
                   onTap: () => _viewAvatar(vm),
                   child: avatar,
@@ -60,7 +55,7 @@ class _AvatarPickerState extends State<AvatarPicker> {
                 child: CustomElevatedButton(
                   icon: const Icon(Icons.file_open),
                   label: Text(S.of(context).btnPickFile),
-                  onPressed: () => _pickerAvatar(vm),
+                  onPressed: () => _pickAvatar(vm),
                 ),
               ),
               divider,
@@ -88,7 +83,7 @@ class _AvatarPickerState extends State<AvatarPicker> {
     openImageView(context, imageSrc: vm.avatar);
   }
 
-  _pickerAvatar(ChatDetailVM vm) async {
+  _pickAvatar(ChatDetailVM vm) async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       allowMultiple: false,
       type: FileType.image,
@@ -98,6 +93,7 @@ class _AvatarPickerState extends State<AvatarPicker> {
       if (filePath != null && context.mounted) {
         final avatarPath = await openImageEditor(context, imageSrc: filePath);
         if (!empty<String>(avatarPath)) {
+          debugPrint("avatarPath: $avatarPath");
           vm.avatar = 'file://$avatarPath';
         }
       }
