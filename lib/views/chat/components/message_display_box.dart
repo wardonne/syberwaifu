@@ -87,7 +87,11 @@ class MessageDisplayBoxState extends State<MessageDisplayBox> {
               selectable: vm.multiSelectMode,
               selected: vm.selectedMessages.contains(message),
               onSelectChanged: (value) {
-                vm.selectMessage(message);
+                if (value ?? false) {
+                  vm.selectMessage(message);
+                } else {
+                  vm.unselectMessage(message);
+                }
               },
               hasError: hasError,
               error: vm.errors[message.uuid!],
