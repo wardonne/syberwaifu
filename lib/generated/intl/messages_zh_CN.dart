@@ -37,6 +37,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "btnAdd": MessageLookupByLibrary.simpleMessage("添加"),
+        "btnAppendQuote": MessageLookupByLibrary.simpleMessage("追加引用"),
         "btnBack": MessageLookupByLibrary.simpleMessage("返回"),
         "btnBack2Chat": MessageLookupByLibrary.simpleMessage("回到聊天页"),
         "btnCancel": MessageLookupByLibrary.simpleMessage("取消"),

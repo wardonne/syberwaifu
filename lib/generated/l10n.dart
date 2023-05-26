@@ -460,6 +460,16 @@ class S {
     );
   }
 
+  /// `追加引用`
+  String get btnAppendQuote {
+    return Intl.message(
+      '追加引用',
+      name: 'btnAppendQuote',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `退出`
   String get btnQuit {
     return Intl.message(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:syberwaifu/components/buttons/context_menu_button.dart';
 import 'package:syberwaifu/components/dialogs/confirm_dialog.dart';
+import 'package:syberwaifu/functions/navigator.dart';
 import 'package:syberwaifu/functions/show_message.dart';
 import 'package:syberwaifu/generated/l10n.dart';
 import 'package:syberwaifu/models/chat/chat_message_model.dart';
@@ -25,21 +26,20 @@ class _MessageItemPopupMenuState extends State<MessageItemPopupMenu> {
     Clipboard.setData(ClipboardData(text: widget.message.content)).then(
       (value) {
         if (context.mounted) {
-          Navigator.of(context).pop();
-          ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(S.of(context).messageCopied)));
+          back(context);
+          showMessage(context, S.of(context).messageCopied);
         }
       },
     );
   }
 
   _multiSelect() {
-    Navigator.of(context).pop();
+    back(context);
     widget.chatMessagesVM.multiSelectMode = true;
   }
 
   _quote([bool withContext = false]) {
-    Navigator.of(context).pop();
+    back(context);
     widget.chatMessagesVM.quote(widget.message, withContext);
   }
 
@@ -48,7 +48,7 @@ class _MessageItemPopupMenuState extends State<MessageItemPopupMenu> {
   }
 
   _delete() async {
-    Navigator.of(context).pop();
+    back(context);
     await showDialog(
       context: context,
       builder: (context) => ConfirmDialog(
@@ -63,6 +63,11 @@ class _MessageItemPopupMenuState extends State<MessageItemPopupMenu> {
         },
       ),
     );
+  }
+
+  _appendQuote() async {
+    back(context);
+    widget.chatMessagesVM.appendQuote(widget.message);
   }
 
   @override
@@ -91,6 +96,12 @@ class _MessageItemPopupMenuState extends State<MessageItemPopupMenu> {
           label: Text(S.of(context).btnQuoteWithContext),
           onPressed: _quoteWithContext,
         ),
+        if (widget.chatMessagesVM.quoteMessages.isNotEmpty)
+          ContextMenuButton(
+            icon: const Icon(Icons.arrow_forward),
+            label: Text(S.of(context).btnAppendQuote),
+            onPressed: _appendQuote,
+          ),
         ContextMenuButton(
           icon: const Icon(Icons.delete),
           label: Text(S.of(context).btnDelete),

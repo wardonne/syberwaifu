@@ -266,14 +266,18 @@ class ChatMessagesVM extends ChangeNotifier with DiagnosticableTreeMixin {
 
   final Map<String, String> errors = {};
 
-  void quote(ChatMessageModel message, [bool withContext = false]) async {
-    final quoteMessageList = <ChatMessageModel>[];
+  void quote(ChatMessageModel message, [bool withContext = false]) {
     if (withContext) {
-      final quotes = await message.quotes;
-      quoteMessageList.addAll(quotes);
+      final quotes = cachedQuoteMessages[message.uuid!] ?? [];
+      quoteMessages.addAll(quotes);
     }
-    quoteMessageList.add(message);
-    quoteMessages = quoteMessageList;
+    quoteMessages.add(message);
+    notifyListeners();
+  }
+
+  void appendQuote(ChatMessageModel message) {
+    quoteMessages.add(message);
+    notifyListeners();
   }
 
   final cachedQuoteMessages = <String, List<ChatMessageModel>>{};

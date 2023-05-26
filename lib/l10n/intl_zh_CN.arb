@@ -46,6 +46,7 @@
     "btnCopy": "复制",
     "btnQuote": "引用",
     "btnQuoteWithContext": "引用上下文",
+    "btnAppendQuote": "追加引用",
     "btnQuit": "退出",
     "btnSend": "发送",
     "btnClose": "关闭",
