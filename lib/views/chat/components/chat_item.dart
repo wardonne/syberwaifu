@@ -52,6 +52,7 @@ class _ChatItemState extends State<ChatItem> {
               return Text(
                 latestMessage?.content ?? '',
                 overflow: TextOverflow.ellipsis,
+                maxLines: 1,
               );
             } else {
               return const Text('');
