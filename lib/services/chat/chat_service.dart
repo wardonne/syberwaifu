@@ -5,10 +5,9 @@ import 'package:syberwaifu/services/database_execute_service.dart';
 import 'package:syberwaifu/types/chat_list_conditions.dart';
 import 'package:syberwaifu/types/paginated_list.dart';
 
-class ChatService with DatabaseExecuteService {
+class ChatService extends DatabaseExecuteService {
   Future<ChatModel> detail(String uuid) async {
-    return await ChatModel.query()
-        .findOrFail<ChatModel>(pk: uuid, txn: transaction);
+    return await ChatModel.query().findOrFail<ChatModel>(pk: uuid, txn: transaction);
   }
 
   Future<ChatModel> latestOne() async {
@@ -25,8 +24,7 @@ class ChatService with DatabaseExecuteService {
   }
 
   Future<void> delete(String uuid) async {
-    final chat = await ChatModel.query()
-        .findOrFail<ChatModel>(pk: uuid, txn: transaction);
+    final chat = await ChatModel.query().findOrFail<ChatModel>(pk: uuid, txn: transaction);
     await chat.delete(transaction);
   }
 

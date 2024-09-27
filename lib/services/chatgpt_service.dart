@@ -14,15 +14,14 @@ class ChatGPTService {
     client = OpenAI.instance.build(
       token: token,
       baseOption: options,
-      isLog: kDebugMode,
     );
   }
 
   Future<ChatCTResponse?> send(List<Map<String, String>> messages) async {
     final request = ChatCompleteText(
-      messages: messages,
+      messages: messages.map((e) => <String, dynamic>{'role': Role.assistant, 'content': e['content'] ?? ''}).toList(),
       maxToken: 1000,
-      model: ChatModel.ChatGptTurbo0301Model,
+      model: GptTurbo0301ChatModel(),
     );
     final response = await client!.onChatCompletion(request: request);
     return response;

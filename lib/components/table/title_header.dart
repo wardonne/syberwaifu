@@ -25,16 +25,13 @@ class TitleHeader {
               Expanded(
                 child: Text(
                   title,
-                  textScaleFactor: 1.3,
                   style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
-              ...actions
-                  .map((action) => Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 5.0),
-                        child: action,
-                      ))
-                  .toList(),
+              ...actions.map((action) => Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 5.0),
+                    child: action,
+                  )),
             ],
           ),
         ),

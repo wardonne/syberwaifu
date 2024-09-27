@@ -4,7 +4,6 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   auto_updater
-  screen_capturer
   screen_retriever
   window_manager
 )

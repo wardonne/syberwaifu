@@ -23,7 +23,7 @@ class MessageItemPopupMenu extends StatefulWidget {
 
 class _MessageItemPopupMenuState extends State<MessageItemPopupMenu> {
   _copy() {
-    Clipboard.setData(ClipboardData(text: widget.message.content)).then(
+    Clipboard.setData(ClipboardData(text: widget.message.content ?? '')).then(
       (value) {
         if (context.mounted) {
           back(context);

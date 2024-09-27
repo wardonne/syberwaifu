@@ -1,4 +1,6 @@
 import 'package:chat_gpt_sdk/chat_gpt_sdk.dart' show ChatCTResponse;
+// ignore: implementation_imports
+import 'package:chat_gpt_sdk/src/client/exception/request_error.dart';
 import 'package:flutter/foundation.dart';
 import 'package:syberwaifu/constants/assets.dart';
 import 'package:syberwaifu/constants/chat_message.dart';
@@ -12,8 +14,6 @@ import 'package:syberwaifu/services/chat/chat_message_service.dart';
 import 'package:syberwaifu/services/chat/chat_service.dart';
 import 'package:syberwaifu/services/chat/quote_clip_service.dart';
 import 'package:syberwaifu/services/chatgpt_service.dart';
-// ignore: implementation_imports
-import 'package:chat_gpt_sdk/src/client/exception/request_error.dart';
 import 'package:syberwaifu/services/settings/settings_service.dart';
 
 class ChatMessagesVM extends ChangeNotifier with DiagnosticableTreeMixin {
@@ -123,8 +123,7 @@ class ChatMessagesVM extends ChangeNotifier with DiagnosticableTreeMixin {
 
   bool get loadingResponse => _loadingReponse;
 
-  Future<ChatMessageModel> createMessage(String content,
-      [String role = ChatMessageConstants.user]) async {
+  Future<ChatMessageModel> createMessage(String content, [String role = ChatMessageConstants.user]) async {
     return await Model.transaction<ChatMessageModel>((txn) async {
       String? quoteClipId;
 
@@ -140,9 +139,8 @@ class ChatMessagesVM extends ChangeNotifier with DiagnosticableTreeMixin {
         chatId: chatId,
         role: role,
         content: content,
-        sendContent: role != ChatMessageConstants.user
-            ? (role == ChatMessageConstants.system ? content : '')
-            : '${preset.nickname},$content',
+        sendContent:
+            role != ChatMessageConstants.user ? (role == ChatMessageConstants.system ? content : '') : '${preset.nickname},$content',
         quoteClipId: quoteClipId,
       );
       _chatMessageService.endTransaction();
@@ -158,15 +156,11 @@ class ChatMessagesVM extends ChangeNotifier with DiagnosticableTreeMixin {
   }
 
   sendMessage(ChatMessageModel message, [bool isResend = false]) async {
-    final contextMessages = (await preset.messages)
-        .map((e) => {'content': e.content!, 'role': e.role!})
-        .toList();
+    final contextMessages = (await preset.messages).map((e) => {'content': e.content!, 'role': e.role!}).toList();
 
     if (!isResend) {
       contextMessages.addAll(_quoteMessages.map((e) => {
-            'content': e.role == ChatMessageConstants.user
-                ? e.sendContent!
-                : e.content!,
+            'content': e.role == ChatMessageConstants.user ? e.sendContent! : e.content!,
             'role': e.role!,
           }));
     } else {
@@ -174,9 +168,7 @@ class ChatMessagesVM extends ChangeNotifier with DiagnosticableTreeMixin {
       if (quotes.isNotEmpty) {
         cachedQuoteMessages[message.uuid!] = quotes;
         contextMessages.addAll(quotes.map((e) => {
-              'content': e.role == ChatMessageConstants.user
-                  ? e.sendContent!
-                  : e.content!,
+              'content': e.role == ChatMessageConstants.user ? e.sendContent! : e.content!,
               'role': e.role!,
             }));
       }
@@ -212,8 +204,7 @@ class ChatMessagesVM extends ChangeNotifier with DiagnosticableTreeMixin {
 
     final responseChoise = response!.choices.first;
 
-    await createMessage(
-        responseChoise.message.content, responseChoise.message.role);
+    await createMessage(responseChoise.message?.content ?? '', responseChoise.message?.role ?? '');
 
     _quoteMessages = [];
 
